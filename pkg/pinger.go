@@ -1,3 +1,7 @@
+// Copyright (c) 2025 Benjamin Borbe All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 package pkg
 
 import (
@@ -5,11 +9,11 @@ import (
 	"context"
 	"encoding/binary"
 	"fmt"
-	"github.com/golang/glog"
 	"net"
 	"time"
 
 	"github.com/bborbe/errors"
+	"github.com/golang/glog"
 )
 
 const (

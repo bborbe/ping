@@ -8,11 +8,13 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"github.com/bborbe/ping/pkg"
-	"github.com/golang/glog"
 	"os"
 	"runtime"
 	"time"
+
+	"github.com/golang/glog"
+
+	"github.com/bborbe/ping/pkg"
 )
 
 func main() {
