@@ -8,6 +8,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"net"
 	"os"
 	"runtime"
 	"time"
@@ -28,24 +29,30 @@ func main() {
 
 	args := os.Args[1:]
 	if len(args) < 1 {
-		fmt.Println("ping: missing host operand")
+		fmt.Println("missing host operand")
 		os.Exit(1)
 	}
 
-	for _, arg := range args {
-		go func(ctx context.Context, arg string) {
+	for _, destination := range args {
+		ipAddr, err := net.ResolveIPAddr("ip4", destination)
+		if err != nil {
+			fmt.Printf("resolve error: %v\n", err)
+			os.Exit(1)
+		}
+
+		go func(ctx context.Context, ipAddr *net.IPAddr) {
 			ch := time.NewTicker(time.Second).C
 			for {
 				select {
 				case <-ctx.Done():
 					return
 				case <-ch:
-					if err := pkg.Ping(ctx, arg); err != nil {
+					if err := pkg.Ping(ctx, ipAddr); err != nil {
 						fmt.Println("Ping failed:", err)
 					}
 				}
 			}
-		}(ctx, arg)
+		}(ctx, ipAddr)
 	}
 	select {
 	case <-ctx.Done():
