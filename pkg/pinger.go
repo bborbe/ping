@@ -79,6 +79,6 @@ func Ping(ctx context.Context, destination string) error {
 	if reply[20] != icmpEchoReply {
 		return fmt.Errorf("invalid reply type: got %d, want %d", reply[20], icmpEchoReply)
 	}
-	glog.V(2).Infof("Reply from %s: bytes=%d time=%v\n", ipAddr.String(), n, duration)
+	glog.V(2).Infof("Reply from %s: bytes=%d time=%.4fms\n", ipAddr.String(), n, duration.Seconds()*1000)
 	return nil
 }
