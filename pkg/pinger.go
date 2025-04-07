@@ -9,11 +9,11 @@ import (
 	"context"
 	"encoding/binary"
 	"fmt"
-	"github.com/pkg/errors"
 	"net"
 	"time"
 
 	"github.com/golang/glog"
+	"github.com/pkg/errors"
 )
 
 const (
