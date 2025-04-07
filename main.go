@@ -6,13 +6,22 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
 	"github.com/bborbe/ping/pkg"
+	"github.com/golang/glog"
 	"os"
+	"runtime"
 	"time"
 )
 
 func main() {
+	defer glog.Flush()
+	glog.CopyStandardLogTo("info")
+	runtime.GOMAXPROCS(runtime.NumCPU())
+	_ = flag.Set("logtostderr", "true")
+	_ = flag.Set("v", "2")
+
 	ctx := pkg.ContextWithSig(context.Background())
 
 	args := os.Args[1:]

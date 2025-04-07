@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/binary"
 	"fmt"
+	"github.com/golang/glog"
 	"net"
 	"time"
 
@@ -74,7 +75,6 @@ func Ping(ctx context.Context, destination string) error {
 	if reply[20] != icmpEchoReply {
 		return fmt.Errorf("invalid reply type: got %d, want %d", reply[20], icmpEchoReply)
 	}
-
-	fmt.Printf("Reply from %s: bytes=%d time=%v\n", ipAddr.String(), n, duration)
+	glog.V(2).Infof("Reply from %s: bytes=%d time=%v\n", ipAddr.String(), n, duration)
 	return nil
 }
