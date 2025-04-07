@@ -9,10 +9,10 @@ import (
 	"context"
 	"encoding/binary"
 	"fmt"
+	"github.com/pkg/errors"
 	"net"
 	"time"
 
-	"github.com/bborbe/errors"
 	"github.com/golang/glog"
 )
 
@@ -50,7 +50,7 @@ func Ping(ctx context.Context, destination string) error {
 	var buffer bytes.Buffer
 
 	if err := binary.Write(&buffer, binary.BigEndian, icmp); err != nil {
-		return errors.Wrapf(ctx, err, "write icmp message failed")
+		return errors.Wrapf(err, "write icmp message failed")
 	}
 
 	buffer.Write([]byte("HELLO-PING"))
@@ -67,7 +67,7 @@ func Ping(ctx context.Context, destination string) error {
 	reply := make([]byte, 1024)
 
 	if err := conn.SetReadDeadline(time.Now().Add(2 * time.Second)); err != nil {
-		return errors.Wrapf(ctx, err, "SetReadDeadline failed")
+		return errors.Wrapf(err, "SetReadDeadline failed")
 	}
 
 	n, err := conn.Read(reply)
