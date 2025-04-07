@@ -43,7 +43,11 @@ func Ping(ctx context.Context, destination string) error {
 		Seq:  1,
 	}
 	var buffer bytes.Buffer
-	binary.Write(&buffer, binary.BigEndian, icmp)
+
+	if err := binary.Write(&buffer, binary.BigEndian, icmp); err != nil {
+		return errors.Wrapf(ctx, err, "write icmp message failed")
+	}
+
 	buffer.Write([]byte("HELLO-PING"))
 	b := buffer.Bytes()
 	binary.BigEndian.PutUint16(b[2:], Checksum(b)) // Set checksum

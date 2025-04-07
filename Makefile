@@ -35,4 +35,4 @@ vulncheck:
 	go run -mod=mod golang.org/x/vuln/cmd/govulncheck $(shell go list -mod=mod ./... | grep -v /vendor/)
 
 run:
-	sudo go run main.go 8.8.8.8 8.8.4.4 193.101.111.10
+	sudo go run main.go 8.8.8.8 8.8.4.4 193.101.111.10 192.168.177.1 192.168.180.1 192.168.178.5
