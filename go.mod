@@ -10,6 +10,8 @@ require (
 	github.com/incu6us/goimports-reviser/v3 v3.12.5
 	github.com/kisielk/errcheck v1.9.0
 	github.com/maxbrunsfeld/counterfeiter/v6 v6.12.1
+	github.com/onsi/ginkgo/v2 v2.28.1
+	github.com/onsi/gomega v1.39.1
 	golang.org/x/lint v0.0.0-20241112194109-818c5a804067
 	golang.org/x/vuln v1.1.4
 )
@@ -145,6 +147,7 @@ require (
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/go-restruct/restruct v1.2.0-alpha // indirect
+	github.com/go-task/slim-sprig/v3 v3.0.0 // indirect
 	github.com/go-toolsmith/astcast v1.1.0 // indirect
 	github.com/go-toolsmith/astcopy v1.1.0 // indirect
 	github.com/go-toolsmith/astequal v1.2.0 // indirect
@@ -171,6 +174,7 @@ require (
 	github.com/google/jsonschema-go v0.3.0 // indirect
 	github.com/google/osv-scalibr v0.4.3-0.20260204140443-347932c398c6 // indirect
 	github.com/google/osv-scanner/v2 v2.3.3 // indirect
+	github.com/google/pprof v0.0.0-20260115054156-294ebfa9ad83 // indirect
 	github.com/google/s2a-go v0.1.9 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.6 // indirect
