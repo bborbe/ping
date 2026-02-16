@@ -1,2 +1,6 @@
 /vendor
 /ping
+/.update-logs/
+/.claude/
+/CLAUDE.md
+/.mcp-*
