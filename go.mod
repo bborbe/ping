@@ -1,14 +1,14 @@
 module github.com/bborbe/ping
 
-go 1.26.0
+go 1.26.1
 
 require (
 	github.com/actgardner/gogen-avro/v9 v9.2.0
 	github.com/bborbe/errors v1.5.3
 	github.com/golang/glog v1.2.5
 	github.com/google/addlicense v1.2.0
-	github.com/incu6us/goimports-reviser/v3 v3.12.5
-	github.com/kisielk/errcheck v1.9.0
+	github.com/incu6us/goimports-reviser/v3 v3.12.6
+	github.com/kisielk/errcheck v1.10.0
 	github.com/maxbrunsfeld/counterfeiter/v6 v6.12.1
 	github.com/onsi/ginkgo/v2 v2.28.1
 	github.com/onsi/gomega v1.39.1
@@ -442,8 +442,10 @@ exclude (
 	k8s.io/api v0.34.2
 	k8s.io/api v0.34.3
 	k8s.io/api v0.34.4
+	k8s.io/api v0.34.5
 	k8s.io/api v0.35.0
 	k8s.io/api v0.35.1
+	k8s.io/api v0.35.2
 )
 
 exclude (
@@ -452,8 +454,10 @@ exclude (
 	k8s.io/apiextensions-apiserver v0.34.2
 	k8s.io/apiextensions-apiserver v0.34.3
 	k8s.io/apiextensions-apiserver v0.34.4
+	k8s.io/apiextensions-apiserver v0.34.5
 	k8s.io/apiextensions-apiserver v0.35.0
 	k8s.io/apiextensions-apiserver v0.35.1
+	k8s.io/apiextensions-apiserver v0.35.2
 )
 
 exclude (
@@ -462,8 +466,10 @@ exclude (
 	k8s.io/apimachinery v0.34.2
 	k8s.io/apimachinery v0.34.3
 	k8s.io/apimachinery v0.34.4
+	k8s.io/apimachinery v0.34.5
 	k8s.io/apimachinery v0.35.0
 	k8s.io/apimachinery v0.35.1
+	k8s.io/apimachinery v0.35.2
 )
 
 exclude (
@@ -472,8 +478,10 @@ exclude (
 	k8s.io/client-go v0.34.2
 	k8s.io/client-go v0.34.3
 	k8s.io/client-go v0.34.4
+	k8s.io/client-go v0.34.5
 	k8s.io/client-go v0.35.0
 	k8s.io/client-go v0.35.1
+	k8s.io/client-go v0.35.2
 )
 
 exclude (
@@ -482,8 +490,10 @@ exclude (
 	k8s.io/code-generator v0.34.2
 	k8s.io/code-generator v0.34.3
 	k8s.io/code-generator v0.34.4
+	k8s.io/code-generator v0.34.5
 	k8s.io/code-generator v0.35.0
 	k8s.io/code-generator v0.35.1
+	k8s.io/code-generator v0.35.2
 )
 
 exclude (
