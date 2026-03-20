@@ -13,8 +13,10 @@ import (
 	"github.com/golang/glog"
 )
 
+// ContextWithSig returns a context that is cancelled when SIGINT or SIGTERM is received.
 func ContextWithSig(ctx context.Context) context.Context {
 	ctxWithCancel, cancel := context.WithCancel(ctx)
+
 	go func() {
 		defer cancel()
 
@@ -27,11 +29,14 @@ func ContextWithSig(ctx context.Context) context.Context {
 		case signal, ok := <-signalCh:
 			if !ok {
 				glog.V(2).Infof("signal channel closed => cancel context ")
+
 				return
 			}
+
 			glog.V(2).Infof("got signal %s => cancel context ", signal)
 		case <-ctx.Done():
 		}
 	}()
+
 	return ctxWithCancel
 }

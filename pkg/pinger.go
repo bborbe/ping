@@ -28,12 +28,13 @@ type icmpMessage struct {
 	Seq      uint16
 }
 
+// Ping sends an ICMP echo request to the given IP address and waits for a reply.
 func Ping(ctx context.Context, ipAddr *net.IPAddr) error {
 	conn, err := net.DialIP("ip4:icmp", nil, ipAddr)
 	if err != nil {
 		return errors.Errorf(ctx, "dial error (need sudo?): %v", err)
 	}
-	defer conn.Close()
+	defer conn.Close() //nolint:errcheck
 
 	icmp := icmpMessage{
 		Type: icmpEchoRequest,
@@ -41,19 +42,21 @@ func Ping(ctx context.Context, ipAddr *net.IPAddr) error {
 		ID:   0x1234,
 		Seq:  1,
 	}
+
 	var buffer bytes.Buffer
 
 	if err := binary.Write(&buffer, binary.BigEndian, icmp); err != nil {
 		return errors.Wrapf(ctx, err, "write icmp message failed")
 	}
 
-	buffer.Write([]byte("HELLO-PING"))
-	b := buffer.Bytes()
-	binary.BigEndian.PutUint16(b[2:], Checksum(b)) // Set checksum
+	buffer.WriteString("HELLO-PING")
+	icmpBytes := buffer.Bytes()
+	binary.BigEndian.PutUint16(icmpBytes[2:], Checksum(icmpBytes)) // Set checksum
 
 	// Send ICMP Echo Request
 	start := time.Now()
-	if _, err := conn.Write(b); err != nil {
+
+	if _, err := conn.Write(icmpBytes); err != nil {
 		return errors.Errorf(ctx, "send error: %v", err)
 	}
 
@@ -64,15 +67,19 @@ func Ping(ctx context.Context, ipAddr *net.IPAddr) error {
 		return errors.Wrapf(ctx, err, "SetReadDeadline failed")
 	}
 
-	n, err := conn.Read(reply)
+	bytesRead, err := conn.Read(reply)
 	if err != nil {
 		return errors.Errorf(ctx, "read timeout or error: %v", err)
 	}
+
 	duration := time.Since(start)
 
 	if reply[20] != icmpEchoReply {
 		return errors.Errorf(ctx, "invalid reply type: got %d, want %d", reply[20], icmpEchoReply)
 	}
-	glog.V(2).Infof("Reply from %s: bytes=%d time=%.4fms\n", ipAddr.String(), n, duration.Seconds()*1000)
+
+	glog.V(2).Infof("Reply from %s: bytes=%d time=%.4fms\n",
+		ipAddr.String(), bytesRead, duration.Seconds()*1000)
+
 	return nil
 }

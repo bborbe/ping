@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// Package main provides a ping utility that sends ICMP echo requests.
 package main
 
 import (
@@ -20,8 +21,10 @@ import (
 
 func main() {
 	defer glog.Flush()
+
 	glog.CopyStandardLogTo("info")
 	runtime.GOMAXPROCS(runtime.NumCPU())
+
 	_ = flag.Set("logtostderr", "true")
 	_ = flag.Set("v", "2")
 
@@ -29,34 +32,34 @@ func main() {
 
 	args := os.Args[1:]
 	if len(args) < 1 {
-		fmt.Println("missing host operand")
-		os.Exit(1)
+		fmt.Println("missing host operand") //nolint:forbidigo
+		os.Exit(1)                          //nolint:gocritic
 	}
 
 	for _, destination := range args {
 		ipAddr, err := net.ResolveIPAddr("ip4", destination)
 		if err != nil {
-			fmt.Printf("resolve error: %v\n", err)
+			fmt.Printf("resolve error: %v\n", err) //nolint:forbidigo
 			os.Exit(1)
 		}
 
 		go func(ctx context.Context, ipAddr *net.IPAddr) {
 			ch := time.NewTicker(time.Second).C
+
 			for {
 				select {
 				case <-ctx.Done():
 					return
 				case <-ch:
 					if err := pkg.Ping(ctx, ipAddr); err != nil {
-						fmt.Println("Ping failed:", err)
+						fmt.Println("Ping failed:", err) //nolint:forbidigo
 					}
 				}
 			}
 		}(ctx, ipAddr)
 	}
-	select {
-	case <-ctx.Done():
-		fmt.Println("shutting down")
-		os.Exit(1)
-	}
+
+	<-ctx.Done()
+	fmt.Println("shutting down") //nolint:forbidigo
+	os.Exit(1)
 }
