@@ -1,7 +1,12 @@
 ---
-status: approved
+status: completed
+summary: Project is in a healthy state — make precommit passes with exit code 0, no fixes required.
+container: ping-002-fix-tests-and-dod
+dark-factory-version: v0.59.5-dirty
 created: "2026-03-20T14:24:31Z"
 queued: "2026-03-20T14:24:31Z"
+started: "2026-03-20T16:08:57Z"
+completed: "2026-03-20T16:13:58Z"
 ---
 
 <summary>
