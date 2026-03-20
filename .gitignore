@@ -4,3 +4,6 @@
 /.claude/
 /CLAUDE.md
 /.mcp-*
+/.dark-factory.lock
+/prompts/log
+/specs/log
