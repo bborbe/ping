@@ -35,7 +35,7 @@ errcheck:
 	go run -mod=mod github.com/kisielk/errcheck -ignore '(Close|Write|Fprint)' $(shell go list -mod=mod ./... | grep -v /vendor/)
 
 lint:
-	go run -mod=mod github.com/golangci/golangci-lint/v2/cmd/golangci-lint run --timeout 10m ./...
+	go run -mod=mod github.com/golangci/golangci-lint/v2/cmd/golangci-lint run --allow-parallel-runners --timeout 10m ./...
 
 gosec:
 	go run -mod=mod github.com/securego/gosec/v2/cmd/gosec -fmt=text $(shell go list -mod=mod ./... | grep -v /vendor/)
