@@ -1,4 +1,6 @@
 
+include tools.env
+
 default: precommit
 
 .PHONY: precommit ensure format generate test check vet errcheck lint gosec osv-scanner trivy addlicense vulncheck run
@@ -13,9 +15,9 @@ ensure:
 
 format:
 	find . -type f -name '*.go' -not -path './vendor/*' -exec gofmt -w "{}" +
-	go run -mod=mod github.com/incu6us/goimports-reviser/v3 -project-name github.com/bborbe/ping -format -excludes vendor ./...
-	go run -mod=mod github.com/segmentio/golines -w --max-len=100 --shorten-comments -l .
-	go run -mod=mod github.com/shoenig/go-modtool -w fmt go.mod
+	go run github.com/incu6us/goimports-reviser/v3@$(GOIMPORTS_REVISER_VERSION) -project-name github.com/bborbe/ping -format -excludes vendor ./...
+	go run github.com/segmentio/golines@$(GOLINES_VERSION) -w --max-len=100 --shorten-comments -l .
+	go run github.com/shoenig/go-modtool@$(GO_MODTOOL_VERSION) -w fmt go.mod
 
 generate:
 	rm -rf mocks avro
@@ -32,25 +34,25 @@ vet:
 	go vet -mod=mod $(shell go list -mod=mod ./... | grep -v /vendor/)
 
 errcheck:
-	go run -mod=mod github.com/kisielk/errcheck -ignore '(Close|Write|Fprint)' $(shell go list -mod=mod ./... | grep -v /vendor/)
+	go run github.com/kisielk/errcheck@$(ERRCHECK_VERSION) -ignore '(Close|Write|Fprint)' $(shell go list -mod=mod ./... | grep -v /vendor/)
 
 lint:
-	go run -mod=mod github.com/golangci/golangci-lint/v2/cmd/golangci-lint run --allow-parallel-runners --timeout 10m ./...
+	go run github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION) run --allow-parallel-runners --timeout 10m ./...
 
 gosec:
-	go run -mod=mod github.com/securego/gosec/v2/cmd/gosec -fmt=text $(shell go list -mod=mod ./... | grep -v /vendor/)
+	go run github.com/securego/gosec/v2/cmd/gosec@$(GOSEC_VERSION) -fmt=text $(shell go list -mod=mod ./... | grep -v /vendor/)
 
 osv-scanner:
-	go run -mod=mod github.com/google/osv-scanner/v2/cmd/osv-scanner scan --recursive .
+	go run github.com/google/osv-scanner/v2/cmd/osv-scanner@$(OSV_SCANNER_VERSION) scan --recursive .
 
 trivy:
 	trivy fs --exit-code 1 --severity HIGH,CRITICAL .
 
 addlicense:
-	go run -mod=mod github.com/google/addlicense -c "Benjamin Borbe" -y $$(date +'%Y') -l bsd $$(find . -name "*.go" -not -path './vendor/*')
+	go run github.com/google/addlicense@$(ADDLICENSE_VERSION) -c "Benjamin Borbe" -y $$(date +'%Y') -l bsd $$(find . -name "*.go" -not -path './vendor/*')
 
 vulncheck:
-	go run -mod=mod golang.org/x/vuln/cmd/govulncheck $(shell go list -mod=mod ./... | grep -v /vendor/)
+	go run golang.org/x/vuln/cmd/govulncheck@$(GOVULNCHECK_VERSION) $(shell go list -mod=mod ./... | grep -v /vendor/)
 
 run:
 	sudo go run main.go 8.8.8.8 8.8.4.4 193.101.111.10 192.168.177.1 192.168.180.1 192.168.178.5
