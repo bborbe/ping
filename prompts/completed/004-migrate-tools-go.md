@@ -1,11 +1,12 @@
 ---
-status: committing
+status: completed
 summary: Migrated from tools.go to tools.env + Makefile @version pattern; go.mod reduced from 504 to 26 lines, replace block removed, all make targets working identically.
 container: ping-004-migrate-tools-go
 dark-factory-version: dev
 created: "2026-05-01T07:24:19Z"
 queued: "2026-05-01T07:24:19Z"
 started: "2026-05-01T07:24:21Z"
+completed: "2026-05-01T07:27:57Z"
 ---
 
 # Migrate from tools.go to tools.env + Makefile @version pattern
