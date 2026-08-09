@@ -1,12 +1,12 @@
 module github.com/bborbe/ping
 
-go 1.26.4
+go 1.26.5
 
 require (
-	github.com/bborbe/errors v1.5.13
+	github.com/bborbe/errors v1.5.17
 	github.com/golang/glog v1.2.5
-	github.com/onsi/ginkgo/v2 v2.29.0
-	github.com/onsi/gomega v1.41.0
+	github.com/onsi/ginkgo/v2 v2.32.0
+	github.com/onsi/gomega v1.42.1
 )
 
 require (
