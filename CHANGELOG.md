@@ -8,6 +8,10 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## Unreleased
+
+- Update Go to 1.26.5 and update dependencies (ginkgo/v2 v2.29.0 → v2.32.0, gomega v1.41.0 → v1.42.1, bborbe/errors v1.5.13 → v1.5.17)
+
 ## v0.1.9
 
 - Bump `golang.org/x/text` to v0.39.0 (CVE-2026-56852)
