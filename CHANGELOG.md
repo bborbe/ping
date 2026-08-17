@@ -10,9 +10,11 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
-- chore: update Go to 1.26.6 and update dependencies
-
 - chore(security): bump `golang.org/x/mod` v0.37.0 -> v0.40.0 (GO-2026-6179 / GO-2026-6180, CVE-2026-56864 / CVE-2026-56865)
+
+## v0.1.12
+
+- chore: update Go to 1.26.6 and update dependencies
 
 ## v0.1.11
 
