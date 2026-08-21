@@ -25,4 +25,6 @@ require (
 	golang.org/x/tools v0.49.0 // indirect
 )
 
-exclude cloud.google.com/go v0.26.0
+exclude (
+	cloud.google.com/go v0.26.0
+)
