@@ -14,10 +14,11 @@ ensure:
 	rm -rf vendor
 
 format:
-	find . -type f -name '*.go' -not -path './vendor/*' -exec gofmt -w "{}" +
 	go run github.com/incu6us/goimports-reviser/v3@$(GOIMPORTS_REVISER_VERSION) -project-name github.com/bborbe/ping -format -excludes vendor ./...
 	go run github.com/segmentio/golines@$(GOLINES_VERSION) -w --max-len=100 --shorten-comments -l .
 	go run github.com/shoenig/go-modtool@$(GO_MODTOOL_VERSION) -w fmt go.mod
+	# golines last, then gofmt last so its wrapping is normalized and the gofmt lint check passes
+	find . -type f -name '*.go' -not -path './vendor/*' -exec gofmt -w "{}" +
 
 generate:
 	rm -rf mocks avro
