@@ -12,6 +12,11 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 
 - chore: update github.com/bborbe/errors to v1.5.21
 
+## v0.2.0
+
+- feat: opt into `autoMerge.trivial` for mechanically-trivial update PRs
+
+
 ## v0.1.15
 
 - chore: update Go to 1.27.0 and update dependencies
