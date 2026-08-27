@@ -3,7 +3,7 @@ module github.com/bborbe/ping
 go 1.27.0
 
 require (
-	github.com/bborbe/errors v1.5.20
+	github.com/bborbe/errors v1.5.21
 	github.com/golang/glog v1.2.5
 	github.com/onsi/ginkgo/v2 v2.32.1
 	github.com/onsi/gomega v1.42.1
