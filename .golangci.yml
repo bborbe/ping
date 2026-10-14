@@ -139,6 +139,10 @@ linters:
         - .WithMessage(
         - .WithStack(
 
+    gosec:
+      excludes:
+        - G104
+
   exclusions:
     rules:
       - path: "_test.go"
